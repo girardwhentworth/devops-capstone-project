@@ -178,10 +178,10 @@ class TestAccountService(TestCase):
         account = self._create_accounts(1)[0]
         updated_data = {
             "name": "Test Update Account",
-            "email": "max.mustermann@gmail.com",
-            "address": "Wishes Street 65",
-            "phone_number": "+45 XXX",
-            "date_joined": "2024-12-15"
+            "email": "jimbob@sweetumscorp.us",
+            "address": "44 HurdleDeDurdle Way",
+            "phone_number": "4249990123",
+            "date_joined": "2026-10-05"
         }
         account.deserialize(updated_data)
         response = self.client.put(f"{BASE_URL}/{account.id}", json=account.serialize())
