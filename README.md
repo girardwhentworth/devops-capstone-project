@@ -1,6 +1,9 @@
 # Name
 devops-capstone-project
 
+![Build Status](https://github.com/girardwhentworth/devops-capstone-project/actions/workflows/ci-build.yaml/badge.svg)
+
+
 # Description
 Final project for the IBM Applied Devops Engineering cert
 
