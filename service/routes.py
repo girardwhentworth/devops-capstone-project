@@ -14,6 +14,8 @@ HEADER_CONTENT_TYPE = "application/json"
 ############################################################
 # Health Endpoint
 ############################################################
+
+
 @app.route("/health")
 def health():
     """Health Status"""
@@ -23,6 +25,8 @@ def health():
 ######################################################################
 # GET INDEX
 ######################################################################
+
+
 @app.route("/")
 def index():
     """Root URL response"""
@@ -39,6 +43,8 @@ def index():
 ######################################################################
 # CREATE A NEW ACCOUNT
 ######################################################################
+
+
 @app.route("/accounts", methods=["POST"])
 def create_accounts():
     """
@@ -46,14 +52,12 @@ def create_accounts():
     This endpoint will create an Account based the data in the body that is posted
     """
     app.logger.info("Request to create an Account")
-    check_content_type("application/json")
+    check_content_type(HEADER_CONTENT_TYPE)
     account = Account()
     account.deserialize(request.get_json())
     account.create()
     message = account.serialize()
-    # Uncomment once get_accounts has been implemented
-    # location_url = url_for("get_accounts", account_id=account.id, _external=True)
-    location_url = "/"  # Remove once get_accounts has been implemented
+    location_url = url_for("get_accounts", account_id=account.id, _external=True)
     return make_response(
         jsonify(message), status.HTTP_201_CREATED, {"Location": location_url}
     )
@@ -61,6 +65,8 @@ def create_accounts():
 ######################################################################
 # LIST ALL ACCOUNTS
 ######################################################################
+
+
 @app.route("/accounts", methods=["GET"])
 def list_all_accounts():
     """ List all accounts """
@@ -83,6 +89,8 @@ def list_all_accounts():
 ######################################################################
 # READ AN ACCOUNT
 ######################################################################
+
+
 @app.route("/accounts/<int:account_id>", methods=["GET"])
 def get_accounts(account_id):
     """
@@ -101,6 +109,8 @@ def get_accounts(account_id):
 ######################################################################
 # UPDATE AN EXISTING ACCOUNT
 ######################################################################
+
+
 @app.route("/accounts/<int:account_id>", methods=["PUT"])
 def update_account(account_id: int):
     """ Update an account depending on supplied ID """
@@ -125,6 +135,8 @@ def update_account(account_id: int):
 ######################################################################
 # DELETE AN ACCOUNT
 ######################################################################
+
+
 @app.route("/accounts/<int:account_id>", methods=["DELETE"])
 def delete_account(account_id: int):
     """ Delete an account depending on supplied ID """
@@ -143,7 +155,6 @@ def delete_account(account_id: int):
         message = ""
 
     return message, response_status
-
 
 
 ######################################################################
